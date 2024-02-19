@@ -31,7 +31,6 @@ Array.from(modifyButtons).forEach((modifyButton) => {
         let replyIdElement = modifyButton.closest('.reply').getElementsByClassName('reply-id')[0];
         let id = replyIdElement.value;
 
-        let title = modifyButton.closest('.reply').getElementsByClassName('title-input')[0].value;
         let content = modifyButton.closest('.reply').getElementsByClassName('content-input')[0].value;
 
         fetch(`/api/replies/${id}`, {
@@ -40,7 +39,6 @@ Array.from(modifyButtons).forEach((modifyButton) => {
                 "Content-type": "application/json"
             },
             body: JSON.stringify({
-                title: title,
                 content: content
             })
         })

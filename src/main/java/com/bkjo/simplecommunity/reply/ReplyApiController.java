@@ -36,6 +36,12 @@ public class ReplyApiController {
 				.body(replyService.findAllRepliesOfPost(id));
 	}
 	
+	@GetMapping("/replies/{id}")
+	public ResponseEntity<ReplyResponse> replySearchById(@PathVariable("id") Long id, ReplyRequest request) {
+		return ResponseEntity.ok()
+				.body(replyService.updateReply(id, request));
+	}
+	
 	@PutMapping("/replies/{id}")
 	public ResponseEntity<ReplyResponse> replyModify(@PathVariable("id") Long id, @RequestBody ReplyRequest request) {
 		return ResponseEntity.ok()

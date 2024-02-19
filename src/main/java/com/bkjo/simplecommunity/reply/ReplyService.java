@@ -34,23 +34,28 @@ public class ReplyService {
 	}
 	
 	public List<ReplyResponse> findAllRepliesOfPost(Long id) {
-		
 		Post repliedPost = postRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("id not found: " + id));
-		
 		return repliedPost.getReplies()
 				.stream()
 				.map(ReplyResponse::new)
 				.toList();
-		
 	}
 	
+	public ReplyResponse findReplyById(Long id) {
+		Reply reply = replyRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("id not found: " + id));
+		return new ReplyResponse(reply);
+	}
+	
+	@Transactional
 	public void deleteReply(Long id) {
 		Reply deletedReply = replyRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("id not found: " + id));
 		replyRepository.delete(deletedReply);
 	}
-	
+
+	@Transactional
 	public ReplyResponse updateReply(Long id, ReplyRequest request) {
 		Reply updatedReply = replyRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("id not found: " + id));
