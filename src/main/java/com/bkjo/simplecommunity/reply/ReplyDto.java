@@ -25,10 +25,12 @@ public class ReplyDto {
 	public static class ReplyResponse {
 		private Long id;
 		private String content;
+		private Long postId;
 		private LocalDateTime createdAt;
 		private LocalDateTime updatedAt;
 		public ReplyResponse(Reply reply) {
 			this.id = reply.getId();
+			this.postId = reply.getPost().getId();
 			this.content = reply.getContent();
 			this.createdAt = reply.getCreatedAt();
 			this.updatedAt = reply.getUpdatedAt();

@@ -11,11 +11,10 @@ Array.from(deleteButtons).forEach((deleteButton) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            return response.json();
         })
         .then(data => {
             alert('삭제 완료');
-            window.location.replace('/posts');
+            window.location.reload();
         })
         .catch(error => {
             console.error('Fetch Error:', error);
@@ -48,9 +47,9 @@ Array.from(modifyButtons).forEach((modifyButton) => {
             }
             return response.json();
         })
-        .then(() => {
+        .then(data => {
             alert('수정 완료');
-            location.replace('/posts/' + id);
+            location.replace('/posts/' + data.id);
         })
         .catch(error => {
             console.error('Error:', error);
