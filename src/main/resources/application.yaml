@@ -1,20 +1,25 @@
+# database 연동 설정
 spring:
-   datasource:
-     url: jdbc:h2:mem:test # h2 support in-memory-db
-     driver-class-name: org.h2.Driver
-   jpa:
-    show_sql: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    각자 PC에 만들어놓은 Database이름을 써야 합니다. 
+    url: jdbc:mysql://127.0.0.1:3306/COMMUNITY?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    #    mysql에 생성한 사용자 계정 정보를 써야 합니다.
+    username: root
+    password: 1234
+  thymeleaf:
+    cache: false
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    open-in-view: false
+    show-sql: true
     hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        format_sql: true
-    defer-datasource-initialization: true
-   
-   h2:
-    console: 
-      enabled: true
-        
+      ddl-auto: update
+  properties:
+    hibernate:
+      format_sql: true
+  defer-datasource-initialization: true
+  
 logging:
   level:
     org.hibernate.SQL: debug
